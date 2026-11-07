@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>MYSTERLE</title>
+  <meta name="description" content="Mysterle: too much is happening and nobody knows why. The game is to understand the game.">
+  <meta name="theme-color" content="#07010f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%2307010f'/%3E%3Cpath d='M1 8 Q8 1 15 8 Q8 15 1 8Z' fill='%23fff'/%3E%3Ccircle cx='8' cy='8' r='3.2' fill='%23b07bff'/%3E%3Ccircle cx='8' cy='8' r='1.4' fill='%23000'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik+Glitch&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=1.0.0">
+</head>
+<body>
+  <canvas id="cv" aria-hidden="true"></canvas>
+  <div id="veil" class="veil" aria-hidden="true"></div>
+  <svg id="bigeye" class="bigeye" viewBox="0 0 200 120" aria-hidden="true">
+    <path class="be-white" d="M5 60 Q100 -10 195 60 Q100 130 5 60Z"/>
+    <g id="be-iris"><circle cx="100" cy="60" r="30" class="be-iris"/><circle cx="100" cy="60" r="13" class="be-pupil"/></g>
+    <path class="be-lid" d="M5 60 Q100 -10 195 60 Q100 130 5 60Z"/>
+  </svg>
+  <div id="floaters" class="floaters" aria-hidden="true"></div>
+  <div class="ticker top" aria-hidden="true"><span id="tick-a"></span></div>
+  <div class="ticker bottom" aria-hidden="true"><span id="tick-b"></span></div>
+
+  <header class="hud">
+    <div class="brand">
+      <b>MYSTERLE</b> <span id="num">#1</span>
+      <div id="pips" class="pips"></div>
+    </div>
+    <div id="timer" class="timer">00:00</div>
+    <div class="tools">
+      <button id="hint-btn" class="tool" type="button" aria-label="Hint" title="A hint (costs you)">?</button>
+      <button id="calm-btn" class="tool" type="button" aria-label="Calm mode: less flashing and motion" title="Calm mode: less flashing, less motion">&#9790;</button>
+      <button id="mute-btn" class="tool" type="button" aria-label="Toggle sound" title="Sound">&#9834;</button>
+    </div>
+  </header>
+
+  <main id="bar" class="bar" aria-live="polite"></main>
+  <div id="whisper" class="whisper" aria-live="polite"></div>
+  <div id="typed" class="typed" aria-hidden="true"></div>
+
+  <svg id="meter" class="meter" viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="60" r="54" class="m-bg"/>
+    <circle id="m-ring" cx="60" cy="60" r="54" class="m-ring" transform="rotate(-90 60 60)"/>
+    <g id="m-eye" class="m-eye">
+      <path class="m-white" d="M22 60 Q60 26 98 60 Q60 94 22 60Z"/>
+      <g id="m-iris"><circle cx="60" cy="60" r="15" class="m-iris"/><circle id="m-pupil" cx="60" cy="60" r="7" class="m-pupil"/></g>
+    </g>
+  </svg>
+
+  <div id="pops" class="pops"></div>
+  <div id="countdown" class="countdown" aria-hidden="true"></div>
+  <div id="cursor" class="cursor" aria-hidden="true">
+    <svg viewBox="0 0 20 28"><path d="M1 1 L1 23 L7 17 L11 27 L15 25 L11 15 L19 15 Z"/></svg>
+  </div>
+  <div id="flash" class="flash" aria-hidden="true"></div>
+  <div id="reveal" class="reveal" aria-live="assertive"></div>
+
+  <section id="splash" class="splash overlay-ui">
+    <h1 class="logo" data-text="MYSTERLE">MYSTERLE</h1>
+    <p id="splash-num" class="splash-num">MYSTERY #1</p>
+    <p class="splash-line">the game is to understand the game</p>
+    <button id="enter" class="enter" type="button">&#9654; BEGIN</button>
+    <label class="splash-calm"><input id="splash-calm" type="checkbox"> &#9790; calm mode (less flashing &amp; motion)</label>
+    <p class="warn">&#9888; flashing colors, fast motion and noise. sound on.</p>
+    <p id="splash-best" class="splash-best"></p>
+  </section>
+
+  <section id="end" class="end overlay-ui" hidden>
+    <div class="end-card">
+      <p class="end-head">MYSTERY <span id="end-num">#1</span></p>
+      <h2 class="end-title">YOU UNDERSTOOD.</h2>
+      <p id="end-rank" class="end-rank">SEER</p>
+      <p id="end-verdict" class="end-verdict"></p>
+      <div class="end-stats">
+        <span>time <b id="end-time">0:00</b></span>
+        <span>touches <b id="end-clicks">0</b></span>
+        <span>words changed <b id="end-changes">0</b></span>
+        <span>hints <b id="end-hints">0</b></span>
+      </div>
+      <p id="end-best" class="end-best"></p>
+      <div class="end-row">
+        <button id="share-btn" class="enter small" type="button">SHARE</button>
+        <button id="again-btn" class="enter small ghost" type="button">AGAIN</button>
+      </div>
+      <p id="end-next" class="end-next"></p>
+    </div>
+  </section>
+
+  <div class="scan" aria-hidden="true"></div>
+  <script src="script.js?v=1.0.0"></script>
+</body>
+</html>
