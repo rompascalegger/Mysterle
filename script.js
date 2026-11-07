@@ -537,9 +537,10 @@ const LAYERS = [
       L.p = need === 0 ? 1 : (L.hits[k] || 0) / need;
     },
     onTap(L, x, y) {
-      const o = hitObj(x, y);
-      if (!o) return;
       const c = get(L, "c"), s = SHAPE_OF[get(L, "s")];
+      // a matching shape counts even when something else overlaps it
+      const o = hitObj(x, y, (q) => q.color === c && q.shape === s) || hitObj(x, y);
+      if (!o) return;
       if (o.color === c && o.shape === s) {
         const k = c + s;
         L.hits[k] = (L.hits[k] || 0) + 1;
